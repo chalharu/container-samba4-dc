@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -e
+set -eo pipefail
 
 if [ -z "$NETBIOS_NAME" ]; then
   NETBIOS_NAME=$(hostname -s | tr [a-z] [A-Z])
@@ -36,18 +36,18 @@ fi
 if [ ! -f /var/lib/samba/registry.tdb ]; then
     echo "${DOMAIN} - Begin Domain Provisioning"
     rm -f /etc/samba/smb.conf /etc/krb5.conf
-    samba-tool domain provision \
-        --domain="${DOMAIN}" \
-        --adminpass="${ADMIN_PASSWORD}" \
+    echo "samba-tool domain provision \
+        --domain=\"${DOMAIN}\" \
+        --adminpass=\"${ADMIN_PASSWORD}\" \
         --server-role=dc \
-        --realm="${REALM}" \
-        --dns-backend="${DNS_BACKEND}" \
+        --realm=\"${REALM}\" \
+        --dns-backend=\"${DNS_BACKEND}\" \
         --use-rfc2307 \
         ${DNS_FORWARDER_OPTION} \
         ${HOSTIP_OPTION} \
-        --option="rpc server dynamic port range = ${RPC_PORTS}" \
-        --host-name="${NETBIOS_NAME}" \
-        ${ADDITIONAL_OPTIONS}
+        --option=\"rpc server dynamic port range = ${RPC_PORTS}\" \
+        --host-name=\"${NETBIOS_NAME}\" \
+        ${ADDITIONAL_OPTIONS}" | sh
     echo "${DOMAIN} - Domain Provisioned Successfully"
 fi
 
