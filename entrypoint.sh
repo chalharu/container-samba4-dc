@@ -2,6 +2,10 @@
 
 set -eo pipefail
 
+
+mkdir -p /samba/etc
+mkdir -p /samba/lib
+
 if [ -z "$NETBIOS_NAME" ]; then
   NETBIOS_NAME=$(hostname -s | tr [a-z] [A-Z])
 else

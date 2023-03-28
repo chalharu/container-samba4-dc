@@ -8,9 +8,7 @@ RUN apk add --update --no-cache krb5 ldb-tools samba-dc samba-winbind-clients td
 RUN rm -rf /etc/samba && \
     rm -rf /var/lib/samba && \
     ln -s /samba/etc /etc/samba && \
-    ln -s /samba/lib /var/lib/samba && \
-    mkdir -p /samba/etc && \
-    mkdir -p /samba/lib
+    ln -s /samba/lib /var/lib/samba
 
 ADD entrypoint.sh /usr/local/bin/
 RUN chmod a+x /usr/local/bin/entrypoint.sh
