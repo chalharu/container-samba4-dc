@@ -1,4 +1,4 @@
-FROM alpine:3.18
+FROM alpine:3.19
 
 RUN apk add --update --no-cache krb5 ldb-tools samba-dc samba-winbind-clients tdb \
       bind bind-libs bind-tools libcrypto1.1 libxml2 tzdata py3-setuptools py3-pip && \
