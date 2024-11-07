@@ -1,7 +1,7 @@
 FROM alpine:3.20
 
 RUN apk add --update --no-cache krb5 ldb-tools samba-dc samba-winbind-clients tdb \
-      bind bind-libs bind-tools libcrypto1.1 libxml2 tzdata py3-setuptools py3-pip && \
+      bind bind-libs bind-tools libcrypto3 libxml2 tzdata py3-setuptools py3-pip && \
     pip install j2cli && \
     apk del py3-pip
 
