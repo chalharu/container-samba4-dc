@@ -1,0 +1,18 @@
+name: Renovate dry-run
+on:
+  workflow_dispatch:
+concurrency: renovate
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Self-hosted Renovate
+      uses: renovatebot/github-action@v41.0.2
+      with:
+        token: '${{ github.token }}'
+      env:
+        RENOVATE_USERNAME: renovate[bot]
+        RENOVATE_GIT_AUTHOR: renovate[bot] <renovate[bot]@users.noreply.github.com>
+        RENOVATE_BASE_BRANCHES: ${{ github.sha }}
+        LOG_LEVEL: debug
+        RENOVATE_DRY_RUN: full
