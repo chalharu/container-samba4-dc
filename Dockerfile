@@ -1,6 +1,6 @@
 FROM ubuntu:24.04
 
-# renovate: datasource=repology depName=ubuntu_24_04/samba versioning=loose
+# renovate: datasource=repology depName=ubuntu_24_04/samba versioning=deb
 ARG SAMBA_VERSION="2:4.19.5+dfsg-4ubuntu9"
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
