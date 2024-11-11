@@ -4,7 +4,7 @@ on:
     branches:
       - main
     paths:
-      - renovate.json
+      - renovate.json5
       - .github/workflows/renovate-dry-run.yml
   workflow_dispatch:
 concurrency: renovate
