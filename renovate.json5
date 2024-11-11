@@ -23,8 +23,7 @@
     {
       "fileMatch": ["^\\.github/workflows/([^/]+/)*[^/]+\\.ya?ml$"],
       "matchStrings": [
-        "#\\s*renovate:\\s*datasource=(?<datasource>.*?)\\s+depName=(?<depName>.*?)(\\s+versioning=(?<versioning>.*?))?(\\s+registryUrl=(?<registryUrl>.*?))?\\s*\\n\\s*.*?_VERSION:\\s+\"(?<currentValue>.*)\"\\s",
-        "#\\s*renovate:\\s*datasource=(?<datasource>.*?)\\s+depName=(?<depName>.*?)(\\s+versioning=(?<versioning>.*?))?(\\s+registryUrl=(?<registryUrl>.*?))?\\s*\\n\\s*.*?_VERSION:\\s+(?<currentValue>.*)\\s"
+        "#\\s*renovate:\\s*datasource=(?<datasource>.*?)\\s+depName=(?<depName>.*?)(\\s+versioning=(?<versioning>.*?))?(\\s+registryUrl=(?<registryUrl>.*?))?\\s*\\n\\s*.*?_VERSION:\\s+\"(?<currentValue>.*)\"\\s"
       ],
       "versioningTemplate": "{{#if versioning}}{{versioning}}{{else}}semver{{/if}}"
     }
