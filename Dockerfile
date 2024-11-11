@@ -1,6 +1,6 @@
 FROM ubuntu:24.04
 
-# renovate: datasource=deb depName=samba-ad-dc versioning=deb registryUrl=http://ports.ubuntu.com/ubuntu-ports?suite=noble&components=universe&binaryArch=amd64
+# renovate: datasource=deb depName=samba-ad-dc versioning=deb registryUrl=http://ports.ubuntu.com/ubuntu-ports?release=noble&components=universe&binaryArch=amd64
 ARG SAMBA_VERSION="2:4.19.5+dfsg-4ubuntu9"
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
