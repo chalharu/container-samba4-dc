@@ -14,6 +14,6 @@ jobs:
         RENOVATE_AUTODISCOVER: "true"
         RENOVATE_USERNAME: renovate[bot]
         RENOVATE_GIT_AUTHOR: renovate[bot] <renovate[bot]@users.noreply.github.com>
-        RENOVATE_BASE_BRANCHES: ${{ github.ref }}
+        RENOVATE_BASE_BRANCHES: ${{ github.ref_name }}
         LOG_LEVEL: debug
         RENOVATE_DRY_RUN: full
