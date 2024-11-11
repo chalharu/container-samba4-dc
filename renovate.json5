@@ -16,8 +16,7 @@
     {
       "fileMatch": ["(^|/)Dockerfile$"],
       "matchStrings": [
-        "#\\s*renovate:\\s*datasource=(?<datasource>.*?)\\s+depName=(?<depName>.*?)(\\s+extractVersion=(?<extractVersion>.*?))?(\\s+versioning=(?<versioning>.*?))?(\\s+registryUrl=(?<registryUrl>.*?))?\\s*\\nARG .*?_VERSION=\"(?<currentValue>.*)\"\\s",
-        "#\\s*renovate:\\s*datasource=(?<datasource>.*?)\\s+depName=(?<depName>.*?)(\\s+extractVersion=(?<extractVersion>.*?))?(\\s+versioning=(?<versioning>.*?))?(\\s+registryUrl=(?<registryUrl>.*?))?\\s*\\nARG .*?_VERSION=(?<currentValue>.*)\\s"
+        "#\\s*renovate:\\s*datasource=(?<datasource>.*?)\\s+depName=(?<depName>.*?)(\\s+extractVersion=(?<extractVersion>.*?))?(\\s+versioning=(?<versioning>.*?))?(\\s+registryUrl=(?<registryUrl>.*?))?\\s*\\nARG .*?_VERSION=\"(?<currentValue>.*)\"\\s"
       ],
       "versioningTemplate": "{{#if versioning}}{{versioning}}{{else}}semver{{/if}}"
     },
