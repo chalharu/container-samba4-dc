@@ -16,7 +16,7 @@ jobs:
       SAMBA_VERSION: ${{ steps.contants.SAMBA_VERSION }}
     env:
       # renovate: datasource=deb depName=samba-ad-dc registryUrl=http://ports.ubuntu.com/ubuntu-ports?release=noble&components=universe&binaryArch=arm64
-      SAMBA_PKG_VERSION="2:4.19.5+dfsg-4ubuntu9"
+      SAMBA_PKG_VERSION: "2:4.19.5+dfsg-4ubuntu9"
     steps:
       - id: contants
         run: |
@@ -69,7 +69,7 @@ jobs:
         cache-from: type=gha
         cache-to: type=gha,mode=max
         build-args: |
-          SAMBA_VERSION: ${{ jobs.set-constants.SAMBA_PKG_VERSION }}
+          SAMBA_VERSION: ${{ job.set-constants.SAMBA_PKG_VERSION }}
 
     - name: Build And Push the Docker image
       uses: docker/build-push-action@v6
@@ -81,4 +81,4 @@ jobs:
         cache-from: type=gha
         cache-to: type=gha,mode=max
         build-args: |
-          SAMBA_VERSION: ${{ jobs.set-constants.SAMBA_PKG_VERSION }}
+          SAMBA_VERSION: ${{ job.set-constants.SAMBA_PKG_VERSION }}
