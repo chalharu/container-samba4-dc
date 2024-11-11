@@ -1,7 +1,10 @@
-FROM alpine:3.20
+FROM ubuntu:24.04
 
-RUN apk add --update --no-cache krb5 ldb-tools samba-dc samba-winbind-clients tdb \
-      bind bind-libs bind-tools libcrypto3 libxml2 tzdata py3-setuptools jinja2-cli
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    samba-ad-dc && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN rm -rf /etc/samba && \
     rm -rf /var/lib/samba && \
