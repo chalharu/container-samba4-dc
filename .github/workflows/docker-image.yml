@@ -12,7 +12,7 @@ jobs:
   set-constants:
     runs-on: ubuntu-latest
     outputs:
-      # renovate: datasource=repology depName=ubuntu_24_04/samba
+      # renovate: datasource=repology depName=ubuntu_24_04/samba versioning=loose
       SAMBA_VERSION: "4.9.4"
     steps:
       - run: echo 'Setting constans.'
