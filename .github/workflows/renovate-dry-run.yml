@@ -1,5 +1,11 @@
 name: Renovate dry-run
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - renovate.json
+      - .github/workflows/renovate-dry-run.yml
   workflow_dispatch:
 concurrency: renovate
 jobs:
