@@ -11,6 +11,7 @@ jobs:
       with:
         token: '${{ github.token }}'
       env:
+        RENOVATE_AUTODISCOVER: "true"
         RENOVATE_USERNAME: renovate[bot]
         RENOVATE_GIT_AUTHOR: renovate[bot] <renovate[bot]@users.noreply.github.com>
         RENOVATE_BASE_BRANCHES: ${{ github.sha }}
