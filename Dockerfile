@@ -2,7 +2,7 @@ FROM ubuntu:24.04
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    samba-ad-dc=4.19.5+dfsg-4ubuntu9 && \
+    samba-ad-dc=2:4.19.5+dfsg-4ubuntu9 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
