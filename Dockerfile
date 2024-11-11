@@ -1,8 +1,10 @@
 FROM ubuntu:24.04
 
+# renovate: datasource=repology depName=ubuntu_24_04/samba versioning=loose
+ARG SAMBA_VERSION="2:4.19.5+dfsg-4ubuntu9"
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    samba-ad-dc=2:4.19.5+dfsg-4ubuntu9 && \
+    samba-ad-dc=${SAMBA_VERSION} && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
