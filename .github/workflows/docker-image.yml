@@ -12,10 +12,17 @@ jobs:
   set-constants:
     runs-on: ubuntu-latest
     outputs:
-      # renovate: datasource=repology depName=ubuntu_24_04/samba versioning=semver-coerced
-      SAMBA_VERSION: "4.9.4"
+      SAMBA_PKG_VERSION: ${{ steps.contants.SAMBA_PKG_VERSION }}
+      SAMBA_VERSION: ${{ steps.contants.SAMBA_VERSION }}
+    env:
+      # renovate: datasource=deb depName=samba-ad-dc registryUrl=http://ports.ubuntu.com/ubuntu-ports?release=noble&components=universe&binaryArch=arm64
+      SAMBA_PKG_VERSION="2:4.19.5+dfsg-4ubuntu9"
     steps:
-      - run: echo 'Setting constans.'
+      - id: contants
+        run: |
+          echo -n "SAMBA_VERSION=" >> $GITHUB_OUTPUT
+          echo "${SAMBA_PKG_VERSION}" | sed -e 's/[0-9]:\([0-9]\+\.[0-9]\+\.[0-9]\+\)\(\+dfsg-\([0-9]\+\)\)\?\(ubuntu\([0-9]*\)\)\?/\1/g' >> $GITHUB_OUTPUT
+          echo "SAMBA_PKG_VERSION=${SAMBA_PKG_VERSION}" >> $GITHUB_OUTPUT
 
   build:
     runs-on: ubuntu-latest
@@ -61,6 +68,8 @@ jobs:
         tags: ${{ steps.meta.outputs.tags }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
+        build-args: |
+          SAMBA_VERSION: ${{ jobs.set-constants.SAMBA_PKG_VERSION }}
 
     - name: Build And Push the Docker image
       uses: docker/build-push-action@v6
@@ -71,3 +80,5 @@ jobs:
         tags: ${{ steps.meta.outputs.tags }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
+        build-args: |
+          SAMBA_VERSION: ${{ jobs.set-constants.SAMBA_PKG_VERSION }}
