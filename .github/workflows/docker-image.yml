@@ -30,6 +30,7 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    needs: set-constants
 
     steps:
     - name: Checkout
@@ -73,7 +74,7 @@ jobs:
         cache-from: type=gha
         cache-to: type=gha,mode=max
         build-args: |
-          SAMBA_VERSION: ${{ jobs.set-constants.outputs.SAMBA_PKG_VERSION }}
+          SAMBA_VERSION: ${{ needs.set-constants.outputs.SAMBA_PKG_VERSION }}
 
     - name: Build And Push the Docker image
       uses: docker/build-push-action@v6
@@ -85,4 +86,4 @@ jobs:
         cache-from: type=gha
         cache-to: type=gha,mode=max
         build-args: |
-          SAMBA_VERSION: ${{ jobs.set-constants.outputs.SAMBA_PKG_VERSION }}
+          SAMBA_VERSION: ${{ needs.set-constants.outputs.SAMBA_PKG_VERSION }}
