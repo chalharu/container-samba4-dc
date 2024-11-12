@@ -60,7 +60,8 @@ jobs:
         images: |
           ghcr.io/${{ github.repository }}
         tags: |
-          type=semver,pattern={{version}}
+          type=raw,value=latest
+          type=semver,pattern={{version}},value=${{ needs.set-constants.outputs.SAMBA_VERSION }}
           type=sha,format=long
           type=schedule,pattern={{date 'YYYYMMDD-hhmmss'}}
 
