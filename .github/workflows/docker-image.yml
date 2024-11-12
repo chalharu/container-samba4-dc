@@ -23,6 +23,10 @@ jobs:
           echo -n "SAMBA_VERSION=" >> $GITHUB_OUTPUT
           echo "${SAMBA_PKG_VERSION}" | sed -e 's/[0-9]:\([0-9]\+\.[0-9]\+\.[0-9]\+\)\(\+dfsg-\([0-9]\+\)\)\?\(ubuntu\([0-9]*\)\)\?/\1/g' >> $GITHUB_OUTPUT
           echo "SAMBA_PKG_VERSION=${SAMBA_PKG_VERSION}" >> $GITHUB_OUTPUT
+      - id: result
+        run: |
+          echo "SAMBA_PKG_VERSION: ${{ steps.contants.outputs.SAMBA_PKG_VERSION }}"
+          echo "SAMBA_VERSION: ${{ steps.contants.outputs.SAMBA_VERSION }}"
 
   build:
     runs-on: ubuntu-latest
@@ -69,7 +73,7 @@ jobs:
         cache-from: type=gha
         cache-to: type=gha,mode=max
         build-args: |
-          SAMBA_VERSION: ${{ job.set-constants.outputs.SAMBA_PKG_VERSION }}
+          SAMBA_VERSION: ${{ jobs.set-constants.outputs.SAMBA_PKG_VERSION }}
 
     - name: Build And Push the Docker image
       uses: docker/build-push-action@v6
@@ -81,4 +85,4 @@ jobs:
         cache-from: type=gha
         cache-to: type=gha,mode=max
         build-args: |
-          SAMBA_VERSION: ${{ job.set-constants.outputs.SAMBA_PKG_VERSION }}
+          SAMBA_VERSION: ${{ jobs.set-constants.outputs.SAMBA_PKG_VERSION }}
