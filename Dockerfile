@@ -7,11 +7,6 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN rm -rf /etc/samba && \
-    rm -rf /var/lib/samba && \
-    ln -s /samba/etc /etc/samba && \
-    ln -s /samba/lib /var/lib/samba
-
 ADD entrypoint.sh /usr/local/bin/
 RUN chmod a+x /usr/local/bin/entrypoint.sh
 
@@ -23,5 +18,7 @@ ENV ADMIN_PASSWORD=admin1234!
 ENV DOMAIN=EXAMPLE
 ENV DNS_BACKEND=SAMBA_INTERNAL
 ENV RPC_PORTS=49152-49200
+ENV TARGET_DIR=/samba
+# ENV CONF_PATH=${TARGET_DIR}/etc/smb.conf
 
 ENTRYPOINT [ "/usr/local/bin/entrypoint.sh" ]
