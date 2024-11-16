@@ -6,9 +6,9 @@
   "enabledManagers": [
     "devcontainer",
     "dockerfile",
-    "custom.regex"
+    "custom.regex",
+    "github-actions"
   ],
-  "rebaseWhen": "behind-base-branch",
   "customManagers": [
     {
       "customType": "regex",
@@ -30,7 +30,7 @@
   "packageRules" : [
     {
       "matchDatasources": [ "deb" ],
-      "matchPackageNames": ["samba-ad-dc"],
+      "matchPackageNames": [ "samba-ad-dc" ],
       "versioning": "regex:^\\d:(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)(\\+dfsg-(?<build>\\d+))?(ubuntu(?<revision>\\d*))?$",
       "separateMajorMinor": false
     }
