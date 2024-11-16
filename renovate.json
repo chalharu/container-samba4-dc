@@ -29,7 +29,7 @@
   ],
   "packageRules" : [
     {
-      "datasources": [ "deb" ],
+      "matchDatasources": [ "deb" ],
       "matchPackageNames": ["samba-ad-dc"],
       "versioning": "regex:^\\d:(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)(\\+dfsg-(?<build>\\d+))?(ubuntu(?<revision>\\d*))?$",
       "separateMajorMinor": false
