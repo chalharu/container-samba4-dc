@@ -3,7 +3,8 @@ FROM ubuntu:24.04
 ARG SAMBA_VERSION
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    samba-ad-dc=${SAMBA_VERSION} && \
+    samba-ad-dc=${SAMBA_VERSION} \
+    krb5-user=${KRB5_VERSION} && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
