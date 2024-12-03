@@ -1,6 +1,7 @@
 FROM ubuntu:24.04
 
 ARG SAMBA_VERSION
+ARG KRB5_VERSION
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
     samba-ad-dc=${SAMBA_VERSION} \
