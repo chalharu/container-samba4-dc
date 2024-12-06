@@ -1,8 +1,23 @@
 FROM ubuntu:24.04
 
-ARG SAMBA_VERSION
-ARG KRB5_VERSION
-RUN apt-get update && \
+ARG SAMBA_VERSION_ARM64
+ARG SAMBA_VERSION_X64
+ARG KRB5_VERSION_ARM64
+ARG KRB5_VERSION_X64
+
+RUN KRB5_VERSION=$( \
+        case ${TARGETPLATFORM} in \
+            linux/amd64 ) echo "${KRB5_VERSION_X64}";; \
+            linux/arm64 ) echo "${KRB5_VERSION_ARM64}";; \
+        esac \
+    ) && \
+    SAMBA_VERSION=$( \
+        case ${TARGETPLATFORM} in \
+            linux/amd64 ) echo "${SAMBA_VERSION_X64}";; \
+            linux/arm64 ) echo "${SAMBA_VERSION_ARM64}";; \
+        esac \
+    ) && \
+    apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
     samba-ad-dc=${SAMBA_VERSION} \
     krb5-user=${KRB5_VERSION} && \
