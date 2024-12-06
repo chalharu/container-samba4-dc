@@ -14,7 +14,7 @@
       "customType": "regex",
       "fileMatch": [ "(^|/)Dockerfile$" ],
       "matchStrings": [
-        "#\\s*renovate:\\s*datasource=(?<datasource>.*?)\\s+depName=(?<depName>.*?)(\\s+extractVersion=(?<extractVersion>.*?))?(\\s+versioning=(?<versioning>.*?))?(\\s+registryUrl=(?<registryUrl>.*?))?\\s*\\nARG .*?_VERSION=\"(?<currentValue>.*)\"\\s"
+        "#\\s*renovate:\\s*datasource=(?<datasource>.*?)\\s+depName=(?<depName>.*?)(\\s+extractVersion=(?<extractVersion>.*?))?(\\s+versioning=(?<versioning>.*?))?(\\s+registryUrl=(?<registryUrl>.*?))?\\s*\\nARG .*?_VERSION(_[^=]*)?=\"(?<currentValue>.*)\"\\s"
       ],
       "versioningTemplate": "{{#if versioning}}{{versioning}}{{else}}semver{{/if}}"
     },
@@ -22,7 +22,7 @@
       "customType": "regex",
       "fileMatch": [ "^\\.github/workflows/([^/]+/)*[^/]+\\.ya?ml$" ],
       "matchStrings": [
-        "#\\s*renovate:\\s*datasource=(?<datasource>.*?)\\s+depName=(?<depName>.*?)(\\s+extractVersion=(?<extractVersion>.*?))?(\\s+versioning=(?<versioning>.*?))?(\\s+registryUrl=(?<registryUrl>.*?))?\\s*\\n\\s*.*?_VERSION:\\s+\"(?<currentValue>.*)\"\\s"
+        "#\\s*renovate:\\s*datasource=(?<datasource>.*?)\\s+depName=(?<depName>.*?)(\\s+extractVersion=(?<extractVersion>.*?))?(\\s+versioning=(?<versioning>.*?))?(\\s+registryUrl=(?<registryUrl>.*?))?\\s*\\n\\s*.*?_VERSION(_[^=]*)?:\\s+\"(?<currentValue>.*)\"\\s"
       ],
       "versioningTemplate": "{{#if versioning}}{{versioning}}{{else}}semver{{/if}}"
     }
