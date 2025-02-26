@@ -81,7 +81,7 @@ jobs:
           type=schedule,pattern={{date 'YYYYMMDD-hhmmss'}}
 
     - name: Build the Docker image
-      uses: docker/build-push-action@ca877d9245402d1537745e0e356eab47c3520991 # v6
+      uses: docker/build-push-action@471d1dc4e07e5cdedd4c2171150001c434f0b7a4 # v6
       with:
         context: .
         push: false
@@ -96,7 +96,7 @@ jobs:
           KRB5_VERSION_X64=${{ needs.set-constants.outputs.KRB5_PKG_VERSION_X64 }}
 
     - name: Build And Push the Docker image
-      uses: docker/build-push-action@ca877d9245402d1537745e0e356eab47c3520991 # v6
+      uses: docker/build-push-action@471d1dc4e07e5cdedd4c2171150001c434f0b7a4 # v6
       with:
         context: .
         push: true
