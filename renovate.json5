@@ -1,38 +1,46 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "github>chalharu/renovate-config"
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  extends: [
+    'github>chalharu/renovate-config',
   ],
-  "enabledManagers": [
-    "devcontainer",
-    "dockerfile",
-    "custom.regex",
-    "github-actions"
+  enabledManagers: [
+    'devcontainer',
+    'dockerfile',
+    'custom.regex',
+    'github-actions',
   ],
-  "customManagers": [
+  customManagers: [
     {
-      "customType": "regex",
-      "fileMatch": [ "(^|/)Dockerfile$" ],
-      "matchStrings": [
-        "#\\s*renovate:\\s*datasource=(?<datasource>.*?)\\s+depName=(?<depName>.*?)(\\s+extractVersion=(?<extractVersion>.*?))?(\\s+versioning=(?<versioning>.*?))?(\\s+registryUrl=(?<registryUrl>.*?))?\\s*\\nARG .*?_VERSION(_[^=]*)?=\"(?<currentValue>.*)\"\\s"
+      customType: 'regex',
+      managerFilePatterns: [
+        '/(^|/)Dockerfile$/',
       ],
-      "versioningTemplate": "{{#if versioning}}{{versioning}}{{else}}semver{{/if}}"
+      matchStrings: [
+        '#\\s*renovate:\\s*datasource=(?<datasource>.*?)\\s+depName=(?<depName>.*?)(\\s+extractVersion=(?<extractVersion>.*?))?(\\s+versioning=(?<versioning>.*?))?(\\s+registryUrl=(?<registryUrl>.*?))?\\s*\\nARG .*?_VERSION(_[^=]*)?="(?<currentValue>.*)"\\s',
+      ],
+      versioningTemplate: '{{#if versioning}}{{versioning}}{{else}}semver{{/if}}',
     },
     {
-      "customType": "regex",
-      "fileMatch": [ "^\\.github/workflows/([^/]+/)*[^/]+\\.ya?ml$" ],
-      "matchStrings": [
-        "#\\s*renovate:\\s*datasource=(?<datasource>.*?)\\s+depName=(?<depName>.*?)(\\s+extractVersion=(?<extractVersion>.*?))?(\\s+versioning=(?<versioning>.*?))?(\\s+registryUrl=(?<registryUrl>.*?))?\\s*\\n\\s*.*?_VERSION(_[^=]*)?:\\s+\"(?<currentValue>.*)\"\\s"
+      customType: 'regex',
+      managerFilePatterns: [
+        '/^\\.github/workflows/([^/]+/)*[^/]+\\.ya?ml$/',
       ],
-      "versioningTemplate": "{{#if versioning}}{{versioning}}{{else}}semver{{/if}}"
-    }
+      matchStrings: [
+        '#\\s*renovate:\\s*datasource=(?<datasource>.*?)\\s+depName=(?<depName>.*?)(\\s+extractVersion=(?<extractVersion>.*?))?(\\s+versioning=(?<versioning>.*?))?(\\s+registryUrl=(?<registryUrl>.*?))?\\s*\\n\\s*.*?_VERSION(_[^=]*)?:\\s+"(?<currentValue>.*)"\\s',
+      ],
+      versioningTemplate: '{{#if versioning}}{{versioning}}{{else}}semver{{/if}}',
+    },
   ],
-  "packageRules" : [
+  packageRules: [
     {
-      "matchDatasources": [ "deb" ],
-      "matchPackageNames": [ "samba-ad-dc" ],
-      "versioning": "regex:^\\d:(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)(\\+dfsg-(?<build>\\d+))?(ubuntu(?<revision>\\d*))?$",
-      "separateMajorMinor": false
-    }
-  ]
+      matchDatasources: [
+        'deb',
+      ],
+      matchPackageNames: [
+        'samba-ad-dc',
+      ],
+      versioning: 'regex:^\\d:(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)(\\+dfsg-(?<build>\\d+))?(ubuntu(?<revision>\\d*))?$',
+      separateMajorMinor: false,
+    },
+  ],
 }
